@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block header %}
+    <h2>{% block title %}About{% endblock title %}</h2>
+{% endblock header %}
+
+{% block content %}
+  <p font-family: NotoSansRegular>This is a message board for friendly messages.</p>
+
+  <p>
+    Come back home <a href="{{ url_for('pages.gfg') }}">Home page</a>.
+  </p>
+
+   <p>AJAX Sample</p>
+    <form id="form">
+        <h2>First Name</h2>
+        <input type="text" id="firstname">
+        <h2>Last Name</h2>
+        <input type="text" id="lastname">
+        <button type="submit" name="button">Search</button>
+    </form>
+
+    <div id="table-container"></div>
+
+    <script type="text/javascript">
+    $(document).ready(function() {
+      $('#form').on('submit',function(e){
+        $.ajax({
+          data : {
+            firstname : $('#firstname').val(),
+            lastname : $('#lastname').val(),
+          },
+          type : 'POST',
+          url : '/about'
+        })
+        .done(function(data){
+        let table = '<table>';
+        table += '<tr><th>Name</th><th>Age</th></tr>';
+        data.forEach(item => {
+                table += `<tr><td>${item.first_name}</td><td>${item.last_name}</td></tr>`;
+                });
+        table += '</table>';
+        consttableContainer = document.getElementById('table-container');
+        consttableContainer.innerHTML = table;
+        });
+        e.preventDefault();
+      });
+    });
+    </script>
+
+{% endblock content %}

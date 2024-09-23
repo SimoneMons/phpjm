@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h2>{% block title %}Home{% endblock title %}</h2>
+{% endblock header %}
+
+{% block content %}
+  <p>
+    Learn more about this project by visiting the <a href="{{ url_for('pages.indexhh') }}">About page</a>.
+  </p>
+  <form action="{{ url_for('pages.gfg')}}" method="post">
+    <label for="firstname">First Name:</label>
+    <input type="text" id="firstname" name="fname" placeholder="firstname">
+
+    <label for="lastname">Last Name:</label>
+    <input type="text" id="lastname" name="lname" placeholder="lastname">
+
+    <button type="submit">Login</button>
+  </form>
+
+{% endblock content %}

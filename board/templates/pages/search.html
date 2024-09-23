@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h2>{% block title %}Search{% endblock title %}</h2>
+
+
+{% endblock header %}
+
+{% block content %}
+  <p>Search page</p>
+
+    <p>
+        Come back home <a href="{{ url_for('pages.gfg') }}">Home page</a>.
+    </p>
+
+    <form action="{{ url_for('pages.search')}}" method="post">
+      <label for="firstname">First Name:</label>
+      <input type="text" id="firstname" name="fname" placeholder="Search by fisrt name ......">
+      <button type="submit">Search</button>
+    </form>
+
+  <table>
+      <tr>
+        <th>Nombre</th>
+        <th>Apellido</th>
+      </tr>
+      {% for result in employees %}
+            <tr>
+                <td>{{result['id_employee']}}</td>
+                <td>{{result['first_name']}}</td>
+                <td>{{result['last_name']}}</td>
+            </tr>
+     {% endfor %}
+   </table>
+
+    <form action="{{ url_for('pages.search')}}" method="post">
+        <input type="submit" name="open" value="Open">
+        <input type="submit" name="close" value="Close">
+    </form>
+
+    <ul>
+    {% for item in dataopen %}
+        <li>{{item.name}}</li>
+        <li>{{item.place}}</li>
+        <li>{{item.mob}}</li>
+    {% endfor %}
+    </ul>
+
+    <ul>
+    {% for item in dataclose %}
+        <li>{{item.name}}</li>
+        <li>{{item.place}}</li>
+        <li>{{item.mob}}</li>
+    {% endfor %}
+    </ul>
+
+{% endblock content %}

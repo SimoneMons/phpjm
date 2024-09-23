@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h2>{% block title %}List of employees{% endblock title %}</h2>
+{% endblock header %}
+
+{% block content %}
+  <p>
+    Learn more about this project by visiting the <a href="{{ url_for('pages.about') }}">About page</a>.
+  </p>
+  <p>
+    List of employess:
+    <BR>
+  </p>
+
+   <table>
+      <tr>
+        <th>Nombre</th>
+        <th>Apellido</th>
+      </tr>
+      {% for result in employees %}
+            <tr>
+                <td>{{result['id_employee']}}</td>
+                <td>{{result['first_name']}}</td>
+                <td>{{result['last_name']}}</td>
+            </tr>
+     {% endfor %}
+   </table>
+
+{% endblock content %}
